@@ -1,10 +1,10 @@
 name: update data
 on:
   schedule:
-    - cron: 41 4 * * 6
+    - cron: 38 3/4 * * *
   push:
 jobs:
-  update data:
+  update-data:
     name: update data
     runs-on: ubuntu-latest
     steps:
