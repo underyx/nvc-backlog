@@ -1,0 +1,28 @@
+name: update data
+on:
+  schedule:
+    - cron: 41 4 * * 6
+  push:
+jobs:
+  update data:
+    name: update data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Set up poetry
+        uses: Gr1N/setup-poetry@v4
+      - name: Cache poetry virtualenv
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install
+      - name: Run script
+        run: poetry run python main.py
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
