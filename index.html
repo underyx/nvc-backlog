@@ -21,7 +21,7 @@
       <div id="inquiry" style="width: 100%; height: 400px"></div>
     </main>
     <script type="text/javascript">
-      fetch("/data.json")
+      fetch("data.json")
         .then((response) => response.json())
         .then((payload) => {
           for (const [chartId, data] of Object.entries(payload)) {
