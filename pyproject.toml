@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "nvc-timeframes"
+name = "nvc-backlog"
 version = "0.1.0"
 description = ""
 authors = ["Bence Nagy <bence@underyx.me>"]
