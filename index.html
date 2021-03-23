@@ -5,21 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NVC Processing Timeframes</title>
     <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
+      integrity="sha256-O8SsQwDg1R10WnKJNyYgd9J3rlom+YSVcGbEF5RmfFk="
+      crossorigin="anonymous"
     />
-    <script src="https://unpkg.com/echarts@^5/dist/echarts.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"
+      integrity="sha256-NZlQFkif+Cpc0rqEGGpSmaU55Vw4aMWK5KC3BRACd/Q="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0XTNDQT90V"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-0XTNDQT90V");
+    </script>
   </head>
   <body>
-    <main class="container mx-auto px-4">
-      <h1 class="text-4xl py-2">NVC Processing Timeframes</h1>
-      <h2 class="text-2xl py-1">Case creation</h2>
-      <div id="creation" style="width: 100%; height: 400px"></div>
-      <h2 class="text-2xl py-1">Document Review</h2>
-      <div id="review" style="width: 100%; height: 400px"></div>
-      <h2 class="text-2xl py-1">Inquiries</h2>
-      <div id="inquiry" style="width: 100%; height: 400px"></div>
-    </main>
+    <section class="section has-background-light has-text-dark">
+      <main class="container">
+        <h1 class="title is-spaced">NVC Processing Timeframes</h1>
+        <h2 class="subtitle">Case creation</h2>
+        <p>
+          Days elapsed after USCIS sends a case to NVC until the NVC creates a
+          case for it in
+          <a href="https://ceac.state.gov/IV/Login.aspx">CEAC</a>.
+        </p>
+        <div id="creation" style="width: 100%; height: 400px"></div>
+        <h2 class="subtitle">Document Review</h2>
+        <p>
+          Days elapsed until documents submitted on
+          <a href="https://ceac.state.gov/IV/Login.aspx">CEAC</a> are reviewed
+          by NVC.
+        </p>
+        <div id="review" style="width: 100%; height: 400px"></div>
+        <h2 class="subtitle">Inquiries</h2>
+        <p>
+          Days elapsed until question and requests sent via
+          <a
+            href="https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/ask-nvc.html"
+            >NVC's public inquiry form</a
+          >
+          are answered.
+        </p>
+        <div id="inquiry" style="width: 100%; height: 400px"></div>
+      </main>
+    </section>
+    <footer class="footer has-background-light has-text-dark has-text-centered">
+      Data comes from the
+      <a
+        href="https://travel.state.gov/content/travel/en/us-visas/immigrate/nvc-timeframes.html"
+        >NVC Timeframes</a
+      >
+      page. It's checked every four hours, and when new data is available, it
+      gets committed to a
+      <a href="https://github.com/underyx/nvc-backlog/blob/main/data.json"
+        >JSON file on GitHub</a
+      >.<br />Project made by <a href="https://underyx.me">underyx</a>. Good
+      luck to you all!
+    </footer>
     <script type="text/javascript">
       fetch("data.json")
         .then((response) => response.json())
@@ -31,6 +84,7 @@
               animation: false,
               tooltip: {
                 trigger: "axis",
+                formatter: "{a} on {c} days",
               },
               legend: {
                 data: [chartId],
