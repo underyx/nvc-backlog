@@ -44,3 +44,4 @@ for timeframe_name, pattern in PATTERNS.items():
 
 with DATA_PATH.open("w") as data_file:
     json.dump(data, data_file, indent=2)
+    data_file.write("\n")
