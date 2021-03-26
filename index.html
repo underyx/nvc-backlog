@@ -42,7 +42,7 @@
           >
           page. There are many reports of cases that took shorter or longer than
           the numbers displayed there, but this is the best available official
-          data.
+          data. <span id="new-data-expected-on"></span>
         </p>
         <h2 class="subtitle is-size-3">Case creation</h2>
         <p>
@@ -90,7 +90,14 @@
       >.<br />Project made by <a href="https://underyx.me">underyx</a>. Good
       luck to you all!
     </footer>
-    <script type="text/javascript">
+    <script type="module">
+      import {
+        add,
+        getISODay,
+      } from "https://cdn.jsdelivr.net/npm/date-fns@2.19.0/+esm";
+
+      const NVC_TZ_OFFSET_MINS = 5 * 60;
+
       fetch("data.json")
         .then((response) => response.json())
         .then((payload) => {
@@ -121,6 +128,28 @@
             });
             window.addEventListener("resize", chart.resize);
           }
+
+          const dates = Object.keys(payload.creation);
+          const latestDate = new Date(dates[dates.length - 1]);
+
+          const today = add(new Date(), {
+            minutes: new Date().getTimezoneOffset() - NVC_TZ_OFFSET_MINS,
+          });
+          const daysTillNewData =
+            getISODay(today) === 1 &&
+            latestDate.toDateString() !== today.toDateString()
+              ? 0
+              : 8 - getISODay(today);
+
+          document.getElementById(
+            "new-data-expected-on"
+          ).innerText = `New data expected ${
+            daysTillNewData === 0
+              ? "later today"
+              : daysTillNewData === 1
+              ? "tomorrow"
+              : `in ${daysTillNewData} days`
+          } (EST).`;
         });
     </script>
   </body>
