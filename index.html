@@ -10,25 +10,6 @@
       integrity="sha256-O8SsQwDg1R10WnKJNyYgd9J3rlom+YSVcGbEF5RmfFk="
       crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"
-      integrity="sha256-NZlQFkif+Cpc0rqEGGpSmaU55Vw4aMWK5KC3BRACd/Q="
-      crossorigin="anonymous"
-    ></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-0XTNDQT90V"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-0XTNDQT90V");
-    </script>
   </head>
   <body>
     <section class="section has-background-light has-text-dark">
@@ -95,6 +76,7 @@
         add,
         getISODay,
       } from "https://cdn.jsdelivr.net/npm/date-fns@2.20.1/+esm";
+      import * as echarts from "https://cdn.jsdelivr.net/npm/echarts@5.0.2/+esm";
 
       const NVC_TZ_OFFSET_MINS = 5 * 60;
 
@@ -173,6 +155,21 @@
               : `in ${daysTillNewData} days`
           } (EST).`;
         });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0XTNDQT90V"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-0XTNDQT90V");
     </script>
   </body>
 </html>
