@@ -94,7 +94,7 @@
       import {
         add,
         getISODay,
-      } from "https://cdn.jsdelivr.net/npm/date-fns@2.19.0/+esm";
+      } from "https://cdn.jsdelivr.net/npm/date-fns@2.20.1/+esm";
 
       const NVC_TZ_OFFSET_MINS = 5 * 60;
 
@@ -108,7 +108,29 @@
               animation: false,
               tooltip: {
                 trigger: "axis",
-                formatter: "{a} on {c} days",
+                formatter: (params, ticket) => {
+                  const [series] = params;
+                  const [dateString, backlogDays] = series.data;
+                  const date = new Date(dateString);
+                  const processingDate = add(date, {
+                    days: -backlogDays,
+                  });
+
+                  const tooltip = document.createElement("div");
+                  tooltip.appendChild(
+                    document.createTextNode(
+                      `${backlogDays} days of backlog on ${date.toDateString()}`
+                    )
+                  );
+                  tooltip.appendChild(document.createElement("br"));
+                  tooltip.appendChild(
+                    document.createTextNode(
+                      `(processed up to ${processingDate.toDateString()})`
+                    )
+                  );
+
+                  return tooltip;
+                },
               },
               legend: {
                 data: [chartId],
