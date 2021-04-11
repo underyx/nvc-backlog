@@ -1,7 +1,12 @@
 name: update data
 on:
   schedule:
-    - cron: 38 3/4 * * *
+    # check every 10 minutes on Monday in the update window
+    - cron: 3/10 14-16 * * 1
+    # check every hour on Monday outside the update window
+    - cron: 38 0-13,17-23 * * 1
+    # check every day for the rest of the week
+    - cron: 38 8/12 * * 2-7
   push:
 jobs:
   update-data:
