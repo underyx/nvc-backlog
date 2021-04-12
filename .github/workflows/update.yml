@@ -6,7 +6,7 @@ on:
     # check every hour on Monday outside the update window
     - cron: 38 0-13,17-23 * * 1
     # check every day for the rest of the week
-    - cron: 38 8/12 * * 2-7
+    - cron: 38 8 * * 0,2-6
   push:
 jobs:
   update-data:
