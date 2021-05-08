@@ -10,7 +10,9 @@
       integrity="sha256-O8SsQwDg1R10WnKJNyYgd9J3rlom+YSVcGbEF5RmfFk="
       crossorigin="anonymous"
     />
+    <link rel="preload" href="data.json" as="fetch" crossorigin="anonymous" />
     <script
+      defer
       src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"
       integrity="sha256-Yhe8c0oOs2dPYVQKLAi1aBB9uhr7yMmh67ukoWBqDuU="
       crossorigin="anonymous"
@@ -85,7 +87,7 @@
       >.<br />Project made by <a href="https://underyx.me">underyx</a>. Good
       luck to you all!
     </footer>
-    <script type="module">
+    <script defer type="module">
       import {
         add,
         getISODay,
