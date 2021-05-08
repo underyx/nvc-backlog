@@ -17,12 +17,6 @@
       crossorigin="anonymous"
     />
     <link rel="preload" href="data.json" as="fetch" crossorigin="anonymous" />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"
-      integrity="sha256-Yhe8c0oOs2dPYVQKLAi1aBB9uhr7yMmh67ukoWBqDuU="
-      crossorigin="anonymous"
-    ></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
@@ -103,6 +97,7 @@
         add,
         getISODay,
       } from "https://cdn.jsdelivr.net/npm/date-fns@2.21.3/+esm";
+      import { init as echartsInit } from "https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.esm.min.js";
 
       const NVC_TZ_OFFSET_MINS = 5 * 60;
 
@@ -110,7 +105,7 @@
         .then((response) => response.json())
         .then((payload) => {
           for (const [chartId, data] of Object.entries(payload)) {
-            const chart = echarts.init(document.getElementById(chartId));
+            const chart = echartsInit(document.getElementById(chartId));
 
             chart.setOption({
               animation: false,
