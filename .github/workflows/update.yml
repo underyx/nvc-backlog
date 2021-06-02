@@ -8,6 +8,7 @@ on:
     # check every day for the rest of the week
     - cron: 38 8 * * 0,2-6
   push:
+  workflow_dispatch:
 jobs:
   update-data:
     name: update data
