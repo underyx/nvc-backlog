@@ -56,7 +56,7 @@
             >New data expected every Monday (EST)</span
           >
         </p>
-        <h2 class="subtitle is-size-3">Document review</h2>
+        <h2 class="subtitle review is-size-3">Document review</h2>
         <p>
           Time until documents submitted on
           <a href="https://ceac.state.gov/IV/Login.aspx">CEAC</a> are reviewed
@@ -67,7 +67,7 @@
           2021 exactly when this chart predicted.
         </p>
         <div id="review" style="width: 100%; height: 400px"></div>
-        <h2 class="subtitle is-size-3">Case creation</h2>
+        <h2 class="subtitle creation is-size-3">Case creation</h2>
         <p>
           Time after USCIS sends a case to the NVC until the NVC creates a case
           for it in
@@ -78,7 +78,7 @@
           the NVC.
         </p>
         <div id="creation" style="width: 100%; height: 400px"></div>
-        <h2 class="subtitle is-size-3">Inquiries</h2>
+        <h2 class="subtitle inquiry is-size-3">Inquiries</h2>
         <p>
           Time until questions and requests sent via
           <a
@@ -113,6 +113,15 @@
         .then((response) => response.json())
         .then((payload) => {
           for (const [chartId, data] of Object.entries(payload)) {
+            const heading = document.querySelector(`.subtitle.${chartId}`);
+            heading.appendChild(
+              document.createTextNode(
+                ` takes ${JSON.stringify(
+                  Object.values(data)[Object.values(data).length - 1]
+                )} days`
+              )
+            );
+
             const chart = echartsInit(document.getElementById(chartId));
 
             chart.setOption({
