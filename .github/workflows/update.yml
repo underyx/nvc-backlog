@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: 3.9
       - name: Set up poetry
-        uses: Gr1N/setup-poetry@v4
+        uses: Gr1N/setup-poetry@v7
       - name: Cache poetry virtualenv
         uses: actions/cache@v2.1.6
         with:
